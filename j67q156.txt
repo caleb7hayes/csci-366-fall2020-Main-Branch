@@ -1,1 +1,0 @@
-git@github.com:user-nate/csci-366-Fall2020-private.git
