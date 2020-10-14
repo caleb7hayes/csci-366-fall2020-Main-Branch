@@ -46,13 +46,14 @@ unsigned long long int xy_to_bitval(int x, int y) {
     // and using bitwise operators, converting that to an unsigned long long
     // with a 1 in the position corresponding to that x, y
     //
-    // x:0, y:0 == 0b1 (the one is in the first position)
-    // x:1, y: 0 == 0b10 (the one is in the second position)
+    // x:0, y:0 == 0b00000...0001 (the one is in the first position)
+    // x:1, y: 0 == 0b00000...10 (the one is in the second position)
     // ....
     // x:0, y: 1 == 0b100000000 (the one is in the eighth position)
     //
     // you will need to use bitwise operators and some math to produce the right
     // value.
+    return 1ull;
 }
 
 struct game * game_get_current() {
@@ -65,6 +66,7 @@ int game_load_board(struct game *game, int player, char * spec) {
     // to see if it is a valid layout (no off-the-board positions
     // and no overlapping ships)
     //
+
     // if it is valid, you should write the corresponding unsigned
     // long long value into the Game->players[player].ships data
     // slot and return 1

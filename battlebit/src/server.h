@@ -7,7 +7,7 @@
 
 #include "char_buff.h"
 
-#define BATTLEBIT_PORT = 9876;
+#define BATTLEBIT_PORT 9876
 
 typedef  struct game_server {
     pthread_t server_thread; // main server thread that listens for connections

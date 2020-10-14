@@ -1,1 +1,1 @@
-git@github.com:htsp4u/csci-366-fall2020.git
+git@github.com:htsp4u/csci-366-fall2020-private.git

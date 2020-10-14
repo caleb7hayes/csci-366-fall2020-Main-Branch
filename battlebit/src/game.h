@@ -10,7 +10,7 @@
 #define BOARD_DIMENSION 8
 #define SHIP_TYPES 5
 
-enum game_status {CREATED, INITIALIZED, PLAYER_1_TURN, PLAYER_2_TURN, PLAYER_1_WINS, PLAYER_2_WINS};
+enum game_status {CREATED, INITIALIZED, PLAYER_0_TURN, PLAYER_1_TURN, PLAYER_0_WINS, PLAYER_1_WINS};
 
 typedef struct player_info {
     unsigned long long hits;
