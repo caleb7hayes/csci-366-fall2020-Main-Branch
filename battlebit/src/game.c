@@ -53,7 +53,11 @@ unsigned long long int xy_to_bitval(int x, int y) {
     //
     // you will need to use bitwise operators and some math to produce the right
     // value.
-    return 1ull;
+    if(x < 0 || x > 7 || y < 0 || y > 7){
+        return 0;
+    } else {
+        return 1ull << x << y * 8;
+    }
 }
 
 struct game * game_get_current() {

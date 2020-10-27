@@ -30,6 +30,7 @@ TEST(xy_to_bitval, good_values) {
 
     // end of row 7
     EXPECT_EQ(xy_to_bitval(7, 7), 1ull << 63ull);
+
 }
 
 TEST(xy_to_bitval, bad_values) {
