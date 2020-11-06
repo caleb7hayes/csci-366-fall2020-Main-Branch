@@ -14,9 +14,16 @@ TEST(repl_print_ships, print_ships){
     struct player_info player_info = gameon->players[0];
     repl_print_ships(&player_info, buffer);
     //cb_print(buffer);
-    char * expected = "  0 1 2 3 4 5 6 7 \n0 * * * * *       \n1               * \n2 *             * \n3 *   * * *     "
-                      "  \n4 *               \n5 *               \n6                 \n7         * * *   \n";
-    EXPECT_TRUE(strcmp(buffer->buffer, expected) == 0);
+    char * expected = "  0 1 2 3 4 5 6 7 \n"
+                      "0 * * * * *       \n"
+                      "1               * \n"
+                      "2 *             * \n"
+                      "3 *   * * *       \n"
+                      "4 *               \n"
+                      "5 *               \n"
+                      "6                 \n"
+                      "7         * * *   \n";
+    ASSERT_STREQ(buffer->buffer, expected);
     free(buffer);
 }
 TEST(repl_print_hits, print_hits){
@@ -40,7 +47,7 @@ TEST(repl_print_hits, print_hits){
                       "6                 \n"
                       "7                 \n";
     //cb_print(buffer);
-    EXPECT_TRUE(strcmp(buffer->buffer, expected) == 0);
+    ASSERT_STREQ(buffer->buffer, expected);
     free(buffer);
 }
 TEST(repl_print_hits, print_miss){
@@ -64,7 +71,7 @@ TEST(repl_print_hits, print_miss){
                       "6                 \n"
                       "7 M               \n";
     //cb_print(buffer);
-    EXPECT_TRUE(strcmp(buffer->buffer, expected) == 0);
+    ASSERT_STREQ(buffer->buffer, expected);
     free(buffer);
 }
 TEST(repl_print_ships, print_ship_status){
