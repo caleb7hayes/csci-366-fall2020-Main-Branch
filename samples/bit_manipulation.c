@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio[xy_to_bitval(x ,y)].h>
 void print_binary_short(unsigned short num);
 void print_binary_int(unsigned int num);
 

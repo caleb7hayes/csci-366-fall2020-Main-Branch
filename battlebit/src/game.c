@@ -53,9 +53,12 @@ unsigned long long int xy_to_bitval(int x, int y) {
     //
     // you will need to use bitwise operators and some math to produce the right
     // value.
+
+    // Check if the coordinates are valid
     if(x < 0 || x > 7 || y < 0 || y > 7){
         return 0;
     } else {
+        // Move the location over x places and down y * 8 places
         return 1ull << x << y * 8;
     }
 }
@@ -76,16 +79,63 @@ int game_load_board(struct game *game, int player, char * spec) {
     // slot and return 1
     //
     // if it is invalid, you should return -1
+
+    // Make sure that a spec is given
+    if (spec == NULL) {
+        return -1;
+    }
+
+    // Create arrays that hold valid specs
+    char valid[10] = "CcBbDdSsPp";
+    int len[5] = {5, 4, 3, 3, 2};
+    for (int i = 0, j = 0, k = 0; i < 15; i += 3, j += 2, k++) {
+        if (spec[i] == valid[j]) { // If the ship is valid horizontal
+            if ((spec[i + 1] - '0') + len[k] < 8) { // If the ship fits
+                if (add_ship_horizontal(&game->players[player], (spec[i + 1] - '0'), (spec[i + 2] - '0'), len[k]) == -1) {
+                    return -1;
+                }
+            } else {
+                return -1;
+            }
+        } else if (spec[i] == valid[j + 1]) { // If the ship is valid vertical
+            if ((spec[i + 2] - '0') + len[k] < 8) { // If the ship fits
+                if (add_ship_vertical(&game->players[player], (spec[i + 1] - '0'), (spec[i + 2] - '0'), len[k]) == -1) {
+                    return -1;
+                }
+            } else { // If it's not a valid ship
+                return -1;
+            }
+        } else {
+            return -1;
+        }
+    }
+    return 1;
 }
 
 int add_ship_horizontal(player_info *player, int x, int y, int length) {
     // implement this as part of Step 2
     // returns 1 if the ship can be added, -1 if not
     // hint: this can be defined recursively
+    if(length == 0){
+        return 1;
+    } else if(player->ships & xy_to_bitval(x , y)){
+        return -1;
+    } else {
+        player->ships = player->ships | xy_to_bitval(x, y);
+        return add_ship_horizontal(player, x + 1, y, length - 1);
+    }
 }
 
 int add_ship_vertical(player_info *player, int x, int y, int length) {
     // implement this as part of Step 2
     // returns 1 if the ship can be added, -1 if not
     // hint: this can be defined recursively
+    if(length == 0){
+        return 1;
+    } else if(player->ships & xy_to_bitval(x , y)){
+        return -1;
+    } else {
+        player->ships = player->ships | xy_to_bitval(x, y);
+        return add_ship_vertical(player, x, y + 1, length - 1);
+    }
 }
