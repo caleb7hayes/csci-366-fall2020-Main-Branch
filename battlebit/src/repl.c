@@ -123,4 +123,23 @@ void repl_print_hits(struct player_info *player_info, struct char_buff *buffer) 
     // hits and shots values in the players game struct.  If a shot was fired at
     // a given spot and it was a hit, print 'H', if it was a miss, print 'M'.  If
     // no shot was taken at a position, print a space character ' '
+    char temp[20];
+    strcpy(buffer->buffer, "  0 1 2 3 4 5 6 7 \n");
+    for(int y = 0; y < 8; y++){
+        sprintf(temp, "%d ", y);
+        strcat(buffer->buffer, temp);
+        for(int x = 0; x < 8; x++){
+            if(player_info->hits & xy_to_bitval(x, y)){
+                sprintf(temp, "%c ", 'H');
+                strcat(buffer->buffer, temp);
+            } else if(player_info->shots & xy_to_bitval(x, y)){
+                sprintf(temp, "%c ", 'M');
+                strcat(buffer->buffer, temp);
+            } else {
+                sprintf(temp, "%c ", ' ');
+                strcat(buffer->buffer, temp);
+            }
+        }
+        strcat(buffer->buffer, "\n");
+    }
 }
