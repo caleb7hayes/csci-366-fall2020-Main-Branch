@@ -97,6 +97,23 @@ void repl_print_ships(player_info *player_info, char_buff *buffer) {
     //  for the console.  You will need to use bit masking for each position
     //  to determine if a ship is at the position or not.  If it is present
     //  you need to print an X.  If not, you need to print a space character ' '
+    char temp[20];
+    strcpy(buffer->buffer, "  0 1 2 3 4 5 6 7 \n");
+    for(int y = 0; y < 8; y++){
+        sprintf(temp, "%d ", y);
+        strcat(buffer->buffer, temp);
+        for(int x = 0; x < 8; x++){
+            if(player_info->ships & xy_to_bitval(x , y)){
+                sprintf(temp,"%c ", '*');
+                strcat(buffer->buffer, temp);
+            } else {
+                sprintf(temp, "%c ", ' ');
+                strcat(buffer->buffer, temp);
+            }
+        }
+        strcat(buffer->buffer, "\n");
+    }
+
 }
 
 void repl_print_hits(struct player_info *player_info, struct char_buff *buffer) {
