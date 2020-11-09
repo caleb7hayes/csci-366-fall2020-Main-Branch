@@ -75,7 +75,7 @@ TEST(game_fire,hit_fire){
 TEST(game_fire,hit_fire2){
     game_init();
     struct game * gameon = game_get_current();
-    char *     spec = "c00B07d23s75P61";
+    char * spec = "c00B07d23s75P61";
     game_load_board(gameon, 1, spec);
     ASSERT_EQ(game_fire(gameon,0,0,0),1);
     ASSERT_EQ(game_fire(gameon,0,0,1),1);

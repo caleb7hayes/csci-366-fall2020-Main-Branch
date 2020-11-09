@@ -39,6 +39,32 @@ int game_fire(game *game, int player, int x, int y) {
     //
     //  If the opponents ships value is 0, they have no remaining ships, and you should set the game state to
     //  PLAYER_1_WINS or PLAYER_2_WINS depending on who won.
+
+    /*
+    if(game->players[player].ships == 0){
+        game->status = PLAYER_1_WINS;
+    } else if(game->players[opponent].ships == 0){
+        game->status = PLAYER_0_WINS;
+    }
+
+    if(player == 0){
+        game->status = PLAYER_0_TURN;
+    } else {
+        game->status = PLAYER_1_TURN;
+    }
+     */
+
+    int opponent = (player + 1) % 2;
+    unsigned long long shot = xy_to_bitval(x, y);
+    game->players[player].shots = game->players[player].shots | shot;
+
+    if(game->players[opponent].ships & shot){
+        game->players[player].hits = game->players[player].hits | shot;
+        game->players[opponent].ships = game->players[opponent].ships ^ shot;
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 unsigned long long int xy_to_bitval(int x, int y) {
@@ -90,7 +116,7 @@ int game_load_board(struct game *game, int player, char * spec) {
     int len[5] = {5, 4, 3, 3, 2};
     for (int i = 0, j = 0, k = 0; i < 15; i += 3, j += 2, k++) {
         if (spec[i] == valid[j]) { // If the ship is valid horizontal
-            if ((spec[i + 1] - '0') + len[k] < 8) { // If the ship fits
+            if ((spec[i + 1] - '0') + len[k] - 1 < 8) { // If the ship fits
                 if (add_ship_horizontal(&game->players[player], (spec[i + 1] - '0'), (spec[i + 2] - '0'), len[k]) == -1) {
                     return -1;
                 }
@@ -98,7 +124,7 @@ int game_load_board(struct game *game, int player, char * spec) {
                 return -1;
             }
         } else if (spec[i] == valid[j + 1]) { // If the ship is valid vertical
-            if ((spec[i + 2] - '0') + len[k] < 8) { // If the ship fits
+            if ((spec[i + 2] - '0') + len[k] - 1 < 8) { // If the ship fits
                 if (add_ship_vertical(&game->players[player], (spec[i + 1] - '0'), (spec[i + 2] - '0'), len[k]) == -1) {
                     return -1;
                 }
@@ -116,12 +142,13 @@ int add_ship_horizontal(player_info *player, int x, int y, int length) {
     // implement this as part of Step 2
     // returns 1 if the ship can be added, -1 if not
     // hint: this can be defined recursively
+    unsigned long long shot = xy_to_bitval(x , y);
     if(length == 0){
         return 1;
-    } else if(player->ships & xy_to_bitval(x , y)){
+    } else if(player->ships & shot){
         return -1;
     } else {
-        player->ships = player->ships | xy_to_bitval(x, y);
+        player->ships = player->ships | shot;
         return add_ship_horizontal(player, x + 1, y, length - 1);
     }
 }
@@ -130,12 +157,13 @@ int add_ship_vertical(player_info *player, int x, int y, int length) {
     // implement this as part of Step 2
     // returns 1 if the ship can be added, -1 if not
     // hint: this can be defined recursively
+    unsigned long long shot = xy_to_bitval(x , y);
     if(length == 0){
         return 1;
-    } else if(player->ships & xy_to_bitval(x , y)){
+    } else if(player->ships & shot){
         return -1;
     } else {
-        player->ships = player->ships | xy_to_bitval(x, y);
+        player->ships = player->ships | shot;
         return add_ship_vertical(player, x, y + 1, length - 1);
     }
 }
