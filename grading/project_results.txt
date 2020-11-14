@@ -48,8 +48,8 @@ string: Foo
 [ RUN      ] add_ship_horizontal.empty_ship
 [       OK ] add_ship_horizontal.empty_ship (0 ms)
 [ RUN      ] add_ship_horizontal.load_ship
-[       OK ] add_ship_horizontal.load_ship (0 ms)
-[----------] 2 tests from add_ship_horizontal (0 ms total)
+[       OK ] add_ship_horizontal.load_ship (1 ms)
+[----------] 2 tests from add_ship_horizontal (1 ms total)
 
 [----------] 2 tests from add_ship_vertical
 [ RUN      ] add_ship_vertical.empty_ship
@@ -93,7 +93,7 @@ Expected equality of these values:
 [----------] 2 tests from repl_print_hits (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 23 tests from 9 test suites ran. (0 ms total)
+[==========] 23 tests from 9 test suites ran. (1 ms total)
 [  PASSED  ] 22 tests.
 [  FAILED  ] 1 test, listed below:
 [  FAILED  ] game_status.is_correct
