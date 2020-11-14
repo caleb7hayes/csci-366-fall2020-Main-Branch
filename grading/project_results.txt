@@ -76,7 +76,7 @@ Expected equality of these values:
   pGame->status
     Which is: 0
 [  FAILED  ] game_status.is_correct (0 ms)
-[----------] 1 test from game_status (1 ms total)
+[----------] 1 test from game_status (0 ms total)
 
 [----------] 2 tests from repl_print_ships
 [ RUN      ] repl_print_ships.print_ships
@@ -93,7 +93,7 @@ Expected equality of these values:
 [----------] 2 tests from repl_print_hits (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 23 tests from 9 test suites ran. (1 ms total)
+[==========] 23 tests from 9 test suites ran. (0 ms total)
 [  PASSED  ] 22 tests.
 [  FAILED  ] 1 test, listed below:
 [  FAILED  ] game_status.is_correct
