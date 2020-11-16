@@ -1,1 +1,0 @@
-git@github.com:ryanhansen2222/csci-366-fall2020-private.git

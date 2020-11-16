@@ -2,6 +2,7 @@
 
 extern "C" {
 #include "game.h"
+#include "helper.h"
 }
 
 TEST(xy_to_bitval, good_values) {
@@ -156,6 +157,7 @@ TEST(game_fire,miss_fire2){
     struct game * gameon = game_get_current();
     char * spec = "c00B07d23s75P61";
     game_load_board(gameon, 1, spec);
+    helper_print_ull(gameon->players[1].ships);
     ASSERT_EQ(game_fire(gameon,0,1,0),0);
     ASSERT_EQ(game_fire(gameon,0,2,0),0);
     ASSERT_EQ(game_fire(gameon,0,3,0),0);
