@@ -96,15 +96,10 @@ void server_demo() {
         socklen_t size_from_connect;
         int client_socket_fd;
         int request_count = 0;
-        while ((client_socket_fd = accept(server_socket_fd,
-                                          (struct sockaddr *) &client,
-                                          &size_from_connect)) > 0) {
+        while ((client_socket_fd = accept(server_socket_fd,(struct sockaddr *) &client, &size_from_connect)) > 0) {
             char message[100] = {0};
-            sprintf(message,
-                    "Thank you for coming, come again - req %d\n\n",
-                    request_count++);
-            send(client_socket_fd, message,
-                 strlen(message), 0);
+            sprintf(message,"Thank you for coming, come again - req %d\n\n",request_count++);
+            send(client_socket_fd, message,strlen(message), 0);
             close(client_socket_fd);
         }
     }
