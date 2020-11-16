@@ -48,8 +48,8 @@ string: Foo
 [ RUN      ] add_ship_horizontal.empty_ship
 [       OK ] add_ship_horizontal.empty_ship (0 ms)
 [ RUN      ] add_ship_horizontal.load_ship
-[       OK ] add_ship_horizontal.load_ship (1 ms)
-[----------] 2 tests from add_ship_horizontal (1 ms total)
+[       OK ] add_ship_horizontal.load_ship (0 ms)
+[----------] 2 tests from add_ship_horizontal (0 ms total)
 
 [----------] 2 tests from add_ship_vertical
 [ RUN      ] add_ship_vertical.empty_ship
