@@ -39,7 +39,7 @@ int handle_client_connect(int player) {
     // This function will end up looking a lot like repl_execute_command, except you will
     // be working against network sockets rather than standard out, and you will need
     // to coordinate turns via the game::status field.
-
+    int opponent = (player + 1) % 2;
     char raw_buffer[2000];
     char_buff *input_buffer = cb_create(2000);
     char_buff *output_buffer = cb_create(2000);
@@ -54,28 +54,62 @@ int handle_client_connect(int player) {
         if (read_size > 0) {
             raw_buffer[read_size] = '\0';
             cb_append(input_buffer, raw_buffer);
-
             char *command = cb_tokenize(input_buffer, " \r\n");
-            if (strcmp(command, "help") == 0) {
-                cb_append(output_buffer, "A useful help message...");
-                cb_append(output_buffer, command);
+            if (strcmp(command, "?") == 0) {
+                cb_append(output_buffer, "? - show help\n");
+                cb_append(output_buffer, "load <string> - load a ship layout file for the given player\n");
+                cb_append(output_buffer, "show - shows the board for the given player\n");
+                cb_append(output_buffer, "fire [0-7] [0-7] - fire at the given position\n");
+                cb_append(output_buffer, "say <string> - Send the string to all players as part of a chat\n");
+                cb_append(output_buffer, "quit - quit the server\n");
                 cb_write(SERVER->player_sockets[player], output_buffer);
-            } else if (strcmp(command, "quit") == 0) {
+            } else if(strcmp(command, "load") == 0){
+                game_load_board(game_get_current(), player, cb_next_token(input_buffer));
+            } else if(strcmp(command, "show") == 0){
+                repl_print_hits(&game_get_current()->players[player], output_buffer);
+                cb_write(SERVER->player_sockets[player], output_buffer);
+                repl_print_ships(&game_get_current()->players[player], output_buffer);
+                cb_write(SERVER->player_sockets[player], output_buffer);
+            } else if(strcmp(command, "fire") == 0){
+                char msg[50];
+                int x = cb_next_token(input_buffer)[0] - '0';
+                int y = cb_next_token(input_buffer)[0] - '0';
+                if(game_fire(game_get_current(), player, x, y) == 0){
+                    sprintf(msg, "Player %d fires at %d %d - Miss\n", player, x, y);
+                    cb_append(output_buffer, msg);
+                    server_broadcast(output_buffer);
+                } else {
+                    sprintf(msg, "Player %d fires at %d %d - Hit\n", player, x, y);
+                    cb_append(output_buffer, msg);
+                    server_broadcast(output_buffer);
+                }
+            } else if(strcmp(command, "say") == 0){
+                    if(opponent == 0){
+                        cb_append(output_buffer, "\nPlayer 0 says: ");
+                        cb_append(output_buffer, cb_next_token(input_buffer));
+                    } else {
+                        cb_append(output_buffer, "Player 1 says: ");
+                        cb_append(output_buffer, cb_next_token(input_buffer));
+                    }
+                    cb_write(SERVER->player_sockets[opponent], output_buffer);
+            } else if(strcmp(command, "quit") == 0){
                 close(SERVER->player_sockets[player]);
-            } else if (command != NULL) {
-                cb_append(output_buffer, "Command was : ");
-                cb_append(output_buffer, command);
+            } else {
+                cb_append(output_buffer, "Invalid Command");
                 cb_write(SERVER->player_sockets[player], output_buffer);
             }
             cb_reset(output_buffer);
-            cb_append(output_buffer, "\nbattleBit (? for help) > ");
+            cb_append(output_buffer, "battleBit (? for help) > ");
             cb_write(SERVER->player_sockets[player], output_buffer);
         }
     }
+    return 0;
 }
 
 void server_broadcast(char_buff *msg) {
     // send message to all players
+    cb_write(SERVER->player_sockets[0], msg);
+    cb_write(SERVER->player_sockets[1], msg);
 }
 
 int run_server() {
@@ -103,7 +137,6 @@ int run_server() {
     server.sin_addr.s_addr = INADDR_ANY;
     server.sin_port = htons(9876);
 
-    int request = 0;
     if (bind(server_socket_fd, (struct sockaddr *) &server, sizeof(server)) < 0) {
         puts("Bind failed");
     } else {
@@ -118,15 +151,21 @@ int run_server() {
         int client_socket_fd;
         int request_count = 0;
         while ((client_socket_fd = accept(server_socket_fd, (struct sockaddr *) &client, &size_from_connect)) > 0) {
+            if(request_count == 2){
+                game_get_current()->status = INITIALIZED;
+            }
             SERVER->player_sockets[request_count] = client_socket_fd;
             pthread_create(&SERVER->player_threads[request_count], NULL, (void *) handle_client_connect, (void *) request_count);
+            request_count++;
         }
     }
+    return 0;
 }
 
 int server_start() {
     // STEP 7 - using a pthread, run the run_server() function asynchronously, so you can still
     // interact with the game via the command line REPL
-    pthread_t serverThread;
-    pthread_create(&serverThread, NULL, (void *) run_server, (void *) 1);
+    init_server();
+    pthread_create(&SERVER->server_thread, NULL, (void *) run_server, NULL);
+    return 0;
 }
