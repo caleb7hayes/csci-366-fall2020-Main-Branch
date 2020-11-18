@@ -39,6 +39,15 @@ string: Foo
 [ RUN      ] game_fire.miss_fire
 [       OK ] game_fire.miss_fire (0 ms)
 [ RUN      ] game_fire.miss_fire2
+  0 1 2 3 4 5 6 7
+0 1 0 0 0 0 0 0 0
+1 1 0 0 0 0 0 1 1
+2 1 0 0 0 0 0 0 0
+3 1 0 1 0 0 0 0 0
+4 1 0 1 0 0 0 0 0
+5 0 0 1 0 0 0 0 1
+6 0 0 0 0 0 0 0 1
+7 1 1 1 1 0 0 0 1
 [       OK ] game_fire.miss_fire2 (0 ms)
 [ RUN      ] game_fire.invalid_fire
 [       OK ] game_fire.invalid_fire (0 ms)
@@ -69,13 +78,7 @@ string: Foo
 
 [----------] 1 test from game_status
 [ RUN      ] game_status.is_correct
-/home/carson/Projects/msu/csci-366-fall2020/grading/scripts/repos/caleb_hayes/battlebit/googletest/game.cpp:322: Failure
-Expected equality of these values:
-  PLAYER_0_TURN
-    Which is: 2
-  pGame->status
-    Which is: 0
-[  FAILED  ] game_status.is_correct (0 ms)
+[       OK ] game_status.is_correct (0 ms)
 [----------] 1 test from game_status (0 ms total)
 
 [----------] 2 tests from repl_print_ships
@@ -93,9 +96,5 @@ Expected equality of these values:
 [----------] 2 tests from repl_print_hits (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 23 tests from 9 test suites ran. (1 ms total)
-[  PASSED  ] 22 tests.
-[  FAILED  ] 1 test, listed below:
-[  FAILED  ] game_status.is_correct
-
- 1 FAILED TEST
+[==========] 23 tests from 9 test suites ran. (0 ms total)
+[  PASSED  ] 23 tests.
