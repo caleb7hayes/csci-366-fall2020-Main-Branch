@@ -75,6 +75,7 @@ void repl_execute_command(struct char_buff * buffer) {
         } else if (strcmp(command, "shortcut") == 0) {
             // update player 1 to only have a single ship in position 0, 0
             game_get_current()->players[1].ships = 1ull;
+            game_get_current()->status = PLAYER_0_TURN;
         } else {
             printf("Unknown Command: %s\n", command);
         }

@@ -17,6 +17,6 @@ typedef  struct game_server {
 
 int server_start();
 
-void server_broadcast(char_buff *msg);
+void server_broadcast(char_buff *msg, int player);
 
 #endif //BATTLESHIP_SERVER_H
