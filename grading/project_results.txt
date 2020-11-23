@@ -17,17 +17,17 @@ size: 3, append_offset: 3
 string: Foo
 size: 3, append_offset: 3
 string: Foo
-[       OK ] char_buff.noOverFlow (1 ms)
+[       OK ] char_buff.noOverFlow (0 ms)
 [ RUN      ] char_buff.tokenize
 [       OK ] char_buff.tokenize (0 ms)
-[----------] 3 tests from char_buff (1 ms total)
+[----------] 3 tests from char_buff (0 ms total)
 
 [----------] 2 tests from xy_to_bitval
 [ RUN      ] xy_to_bitval.good_values
 [       OK ] xy_to_bitval.good_values (0 ms)
 [ RUN      ] xy_to_bitval.bad_values
 [       OK ] xy_to_bitval.bad_values (0 ms)
-[----------] 2 tests from xy_to_bitval (0 ms total)
+[----------] 2 tests from xy_to_bitval (1 ms total)
 
 [----------] 6 tests from game_fire
 [ RUN      ] game_fire.empty_game
