@@ -66,8 +66,10 @@ int handle_client_connect(int player) {
                 cb_append(output_buffer, "quit - quit the server\n");
                 cb_write(SERVER->player_sockets[player], output_buffer);
             } else if (strcmp(command, "load") == 0) {
-                game_load_board(game, player, cb_next_token(input_buffer));
-                if(SERVER->player_threads[1]){
+                if(game_load_board(game, player, cb_next_token(input_buffer)) == -1){
+                    cb_append(output_buffer, "Invalid Spec\n");
+                    server_broadcast(output_buffer, player);
+                } else if(SERVER->player_threads[1]){
                     game->status = PLAYER_0_TURN;
                     cb_append(output_buffer, "All Player Boards Loaded\nPlayer 0 Turn\n");
                     server_broadcast(output_buffer, player);
