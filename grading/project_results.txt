@@ -27,7 +27,7 @@ string: Foo
 [       OK ] xy_to_bitval.good_values (0 ms)
 [ RUN      ] xy_to_bitval.bad_values
 [       OK ] xy_to_bitval.bad_values (0 ms)
-[----------] 2 tests from xy_to_bitval (1 ms total)
+[----------] 2 tests from xy_to_bitval (0 ms total)
 
 [----------] 6 tests from game_fire
 [ RUN      ] game_fire.empty_game
@@ -96,5 +96,5 @@ string: Foo
 [----------] 2 tests from repl_print_hits (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 23 tests from 9 test suites ran. (1 ms total)
+[==========] 23 tests from 9 test suites ran. (0 ms total)
 [  PASSED  ] 23 tests.
