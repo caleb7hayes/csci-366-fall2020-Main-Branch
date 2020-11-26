@@ -79,7 +79,7 @@ string: Foo
 [----------] 1 test from game_status
 [ RUN      ] game_status.is_correct
 [       OK ] game_status.is_correct (0 ms)
-[----------] 1 test from game_status (1 ms total)
+[----------] 1 test from game_status (0 ms total)
 
 [----------] 2 tests from repl_print_ships
 [ RUN      ] repl_print_ships.print_ships
