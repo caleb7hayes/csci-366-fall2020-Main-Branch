@@ -1,100 +1,51 @@
-Running main() from /home/carson/Projects/msu/csci-366-fall2020/grading/scripts/repos/caleb_hayes/battlebit/googletest/lib/googletest/src/gtest_main.cc
-[==========] Running 23 tests from 9 test suites.
-[----------] Global test environment set-up.
-[----------] 3 tests from char_buff
-[ RUN      ] char_buff.bootstrap
-size: 2000, append_offset: 0
-string: 
-size: 2000, append_offset: 3
-string: Foo
-size: 2000, append_offset: 6
-string: FooFoo
-[       OK ] char_buff.bootstrap (0 ms)
-[ RUN      ] char_buff.noOverFlow
-size: 3, append_offset: 0
-string: 
-size: 3, append_offset: 3
-string: Foo
-size: 3, append_offset: 3
-string: Foo
-[       OK ] char_buff.noOverFlow (0 ms)
-[ RUN      ] char_buff.tokenize
-[       OK ] char_buff.tokenize (0 ms)
-[----------] 3 tests from char_buff (0 ms total)
-
-[----------] 2 tests from xy_to_bitval
-[ RUN      ] xy_to_bitval.good_values
-[       OK ] xy_to_bitval.good_values (0 ms)
-[ RUN      ] xy_to_bitval.bad_values
-[       OK ] xy_to_bitval.bad_values (0 ms)
-[----------] 2 tests from xy_to_bitval (0 ms total)
-
-[----------] 6 tests from game_fire
-[ RUN      ] game_fire.empty_game
-[       OK ] game_fire.empty_game (0 ms)
-[ RUN      ] game_fire.hit_fire
-[       OK ] game_fire.hit_fire (0 ms)
-[ RUN      ] game_fire.hit_fire2
-[       OK ] game_fire.hit_fire2 (0 ms)
-[ RUN      ] game_fire.miss_fire
-[       OK ] game_fire.miss_fire (0 ms)
-[ RUN      ] game_fire.miss_fire2
-  0 1 2 3 4 5 6 7
-0 1 0 0 0 0 0 0 0
-1 1 0 0 0 0 0 1 1
-2 1 0 0 0 0 0 0 0
-3 1 0 1 0 0 0 0 0
-4 1 0 1 0 0 0 0 0
-5 0 0 1 0 0 0 0 1
-6 0 0 0 0 0 0 0 1
-7 1 1 1 1 0 0 0 1
-[       OK ] game_fire.miss_fire2 (0 ms)
-[ RUN      ] game_fire.invalid_fire
-[       OK ] game_fire.invalid_fire (0 ms)
-[----------] 6 tests from game_fire (0 ms total)
-
-[----------] 2 tests from add_ship_horizontal
-[ RUN      ] add_ship_horizontal.empty_ship
-[       OK ] add_ship_horizontal.empty_ship (0 ms)
-[ RUN      ] add_ship_horizontal.load_ship
-[       OK ] add_ship_horizontal.load_ship (0 ms)
-[----------] 2 tests from add_ship_horizontal (0 ms total)
-
-[----------] 2 tests from add_ship_vertical
-[ RUN      ] add_ship_vertical.empty_ship
-[       OK ] add_ship_vertical.empty_ship (0 ms)
-[ RUN      ] add_ship_vertical.load_ship
-[       OK ] add_ship_vertical.load_ship (0 ms)
-[----------] 2 tests from add_ship_vertical (0 ms total)
-
-[----------] 3 tests from game_load_board
-[ RUN      ] game_load_board.empty_spec
-[       OK ] game_load_board.empty_spec (0 ms)
-[ RUN      ] game_load_board.incomplete_spec
-[       OK ] game_load_board.incomplete_spec (0 ms)
-[ RUN      ] game_load_board.valid_spec
-[       OK ] game_load_board.valid_spec (0 ms)
-[----------] 3 tests from game_load_board (0 ms total)
-
-[----------] 1 test from game_status
-[ RUN      ] game_status.is_correct
-[       OK ] game_status.is_correct (0 ms)
-[----------] 1 test from game_status (0 ms total)
-
-[----------] 2 tests from repl_print_ships
-[ RUN      ] repl_print_ships.print_ships
-[       OK ] repl_print_ships.print_ships (0 ms)
-[ RUN      ] repl_print_ships.print_ship_status
-[       OK ] repl_print_ships.print_ship_status (0 ms)
-[----------] 2 tests from repl_print_ships (0 ms total)
-
-[----------] 2 tests from repl_print_hits
-[ RUN      ] repl_print_hits.print_hits
-[       OK ] repl_print_hits.print_hits (0 ms)
-[ RUN      ] repl_print_hits.print_miss
-[       OK ] repl_print_hits.print_miss (0 ms)
-[----------] 2 tests from repl_print_hits (0 ms total)
-
-[----------] Global test environment tear-down
-[==========] 23 tests from 9 test suites ran. (1 ms total)
-[  PASSED  ] 23 tests.
+Scanning dependencies of target battleBit_lib
+[  3%] Building C object CMakeFiles/battleBit_lib.dir/src/main.c.o
+[  6%] Building C object CMakeFiles/battleBit_lib.dir/src/server.c.o
+[  9%] Building C object CMakeFiles/battleBit_lib.dir/src/repl.c.o
+[ 12%] Building C object CMakeFiles/battleBit_lib.dir/src/game.c.o
+[ 15%] Building C object CMakeFiles/battleBit_lib.dir/src/char_buff.c.o
+[ 18%] Building C object CMakeFiles/battleBit_lib.dir/src/helper.c.o
+[ 21%] Building ASM_NASM object CMakeFiles/battleBit_lib.dir/src/assembly_demo.asm.o
+[ 24%] Linking C static library libbattleBit_lib.a
+[ 24%] Built target battleBit_lib
+Scanning dependencies of target battleBit
+[ 27%] Building C object CMakeFiles/battleBit.dir/src/main.c.o
+[ 30%] Building C object CMakeFiles/battleBit.dir/src/server.c.o
+[ 33%] Building C object CMakeFiles/battleBit.dir/src/repl.c.o
+[ 36%] Building C object CMakeFiles/battleBit.dir/src/game.c.o
+[ 39%] Building C object CMakeFiles/battleBit.dir/src/char_buff.c.o
+[ 42%] Building C object CMakeFiles/battleBit.dir/src/helper.c.o
+[ 45%] Building ASM_NASM object CMakeFiles/battleBit.dir/src/assembly_demo.asm.o
+[ 48%] Linking C executable battleBit
+[ 48%] Built target battleBit
+Scanning dependencies of target gtest
+[ 51%] Building CXX object googletest/lib/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+[ 54%] Linking CXX static library ../../../lib/libgtest.a
+[ 54%] Built target gtest
+Scanning dependencies of target gtest_main
+[ 57%] Building CXX object googletest/lib/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+[ 60%] Linking CXX static library ../../../lib/libgtest_main.a
+[ 60%] Built target gtest_main
+Scanning dependencies of target homework_3
+[ 63%] Building CXX object googletest/CMakeFiles/homework_3.dir/homework_3.cpp.o
+[ 66%] Building ASM_NASM object googletest/CMakeFiles/homework_3.dir/homework_3.asm.o
+[ 69%] Linking CXX executable homework_3
+[ 69%] Built target homework_3
+Scanning dependencies of target homework_2
+[ 72%] Building CXX object googletest/CMakeFiles/homework_2.dir/homework_2.cpp.o
+[ 75%] Linking CXX executable homework_2
+[ 75%] Built target homework_2
+Scanning dependencies of target battleBit_tests
+[ 78%] Building CXX object googletest/CMakeFiles/battleBit_tests.dir/char_buff.cpp.o
+[ 81%] Building CXX object googletest/CMakeFiles/battleBit_tests.dir/game.cpp.o
+[ 84%] Building CXX object googletest/CMakeFiles/battleBit_tests.dir/repl.cpp.o
+[ 87%] Linking CXX executable battleBit_tests
+[ 87%] Built target battleBit_tests
+Scanning dependencies of target gmock
+[ 90%] Building CXX object googletest/lib/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o
+[ 93%] Linking CXX static library ../../../lib/libgmock.a
+[ 93%] Built target gmock
+Scanning dependencies of target gmock_main
+[ 96%] Building CXX object googletest/lib/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
+[100%] Linking CXX static library ../../../lib/libgmock_main.a
+[100%] Built target gmock_main
