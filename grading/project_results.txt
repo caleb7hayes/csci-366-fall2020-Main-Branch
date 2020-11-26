@@ -37,7 +37,7 @@ string: Foo
 [ RUN      ] game_fire.hit_fire2
 [       OK ] game_fire.hit_fire2 (0 ms)
 [ RUN      ] game_fire.miss_fire
-[       OK ] game_fire.miss_fire (0 ms)
+[       OK ] game_fire.miss_fire (1 ms)
 [ RUN      ] game_fire.miss_fire2
   0 1 2 3 4 5 6 7
 0 1 0 0 0 0 0 0 0
@@ -51,7 +51,7 @@ string: Foo
 [       OK ] game_fire.miss_fire2 (0 ms)
 [ RUN      ] game_fire.invalid_fire
 [       OK ] game_fire.invalid_fire (0 ms)
-[----------] 6 tests from game_fire (0 ms total)
+[----------] 6 tests from game_fire (1 ms total)
 
 [----------] 2 tests from add_ship_horizontal
 [ RUN      ] add_ship_horizontal.empty_ship
@@ -65,7 +65,7 @@ string: Foo
 [       OK ] add_ship_vertical.empty_ship (0 ms)
 [ RUN      ] add_ship_vertical.load_ship
 [       OK ] add_ship_vertical.load_ship (0 ms)
-[----------] 2 tests from add_ship_vertical (1 ms total)
+[----------] 2 tests from add_ship_vertical (0 ms total)
 
 [----------] 3 tests from game_load_board
 [ RUN      ] game_load_board.empty_spec
